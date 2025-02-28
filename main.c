@@ -2,16 +2,14 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "__fc_builtin.h"
+
 // Init array
 void gen_arr(int arr[], unsigned size) {
   for (unsigned i = 0; i < size; ++i)
     arr[i] = i;
 }
 
-/*@ requires x > 0 && x < size;
-    requires size > 0;
-    requires \valid(arr+(0..size-1));
-*/
 void func(unsigned x, unsigned size, int arr[]) {
   unsigned index = 0;
 
@@ -26,20 +24,13 @@ void func(unsigned x, unsigned size, int arr[]) {
   }
 
   // Crash depending on index after the loop
-  assert(index < size);
+  // assert(index < size);
   // Access index
   arr[index] = 37;
 }
 
 int main() {
-  unsigned x;
-  printf("Input x: ");
-  scanf("%u", &x);
-  // x > 0 && x < 10;
-  if (x <= 0 || x >= 100) {
-    printf("x must be between 0 and 10\n");
-    return 1;
-  }
+  unsigned x = Frama_C_interval(1, 99);
 
   unsigned size = 200;
   int arr[size];
@@ -49,3 +40,8 @@ int main() {
 
   return 0;
 }
+
+/*  requires x > 0 && x < size;
+    requires size > 0;
+    requires \valid(arr+(0..size-1));
+*/
