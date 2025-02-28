@@ -12,10 +12,11 @@ int main(int argc, char *argv[]) {
 //  x = Frama_C_interval(200, INT_MAX);
 //  x = Frama_C_interval(100, INT_MAX);
 
-  if (x < 100) {
-    if (argc != 2)
-      return 1;
-    assert(strcmp(argv[1], "123") != 0);
+  printf("x = %d\n", x);
+
+  if (x < 100000) {
+    //abort();
+    assert(x != 12345);
   }
 
   return 0;
