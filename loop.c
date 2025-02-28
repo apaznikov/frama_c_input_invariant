@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "__fc_builtin.h"
+// #include "__fc_builtin.h"
 
 // Init array
 void gen_arr(int arr[], unsigned size) {
@@ -30,7 +30,8 @@ void func(unsigned x, unsigned size, int arr[]) {
 }
 
 int main() {
-  unsigned x = Frama_C_interval(1, 99);
+  // unsigned x = Frama_C_interval(1, 99);
+  unsigned x = rand();
 
   unsigned size = 200;
   int arr[size];
